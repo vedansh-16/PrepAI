@@ -4,95 +4,129 @@
 
 PrepAI is a full-stack AI-powered interview preparation platform that analyzes a candidate's resume against a target job description and generates a personalized interview preparation strategy.
 
-It identifies skill gaps, generates technical and behavioral interview questions, creates a preparation roadmap, and can generate an ATS-friendly version of the candidate's resume.
+It uses Google's Gemini API to generate interview questions, identify skill gaps, calculate a job-match score, and create a structured preparation roadmap.
+
+## 🚀 Live Demo
+
+**[Open PrepAI](https://prep-ai-nine-iota.vercel.app/)**
 
 ---
 
-## Features
+## ✨ Features
 
-### Resume & Job Analysis
-- Upload your resume in PDF format
-- Add a target job description
-- Provide a short self-description
-- AI-powered resume-to-job matching
-- Match score based on job requirements
+### 🔐 Authentication
 
-### AI Interview Preparation
+- User registration and login
+- JWT-based authentication
+- Protected routes
+- HTTP-only authentication cookies
+- Logout functionality
+
+### 📄 Resume Analysis
+
+- Upload resume in PDF format
+- Extract resume content automatically
+- Compare resume skills with job requirements
+- Analyze candidate profile against a target role
+
+### 🤖 AI Interview Strategy
+
+- AI-generated job match score
 - Technical interview questions
 - Behavioral interview questions
-- Interviewer's intention behind each question
-- Suggested approaches and answers
+- Question intentions
+- Suggested model answers
 - Personalized skill-gap analysis
-- Skill-gap severity classification
 
-### Preparation Roadmap
-- Day-wise preparation plan
-- Topics to revise
-- Coding practice recommendations
+### 🗺️ Preparation Roadmap
+
+- Personalized multi-day preparation plan
+- Topic-specific preparation tasks
+- Java and DSA preparation
+- React and JavaScript preparation
+- Backend and database preparation
 - CS fundamentals revision
 - Mock interview preparation
 
-### ATS-Friendly Resume
-- Generate a job-tailored resume
-- Optimize content for ATS parsing
-- Generate a professional PDF
-- Tailor resume content according to the target job description
+### 📥 Resume Generation
 
-### Authentication
-- User registration
-- Secure password hashing
-- User login/logout
-- JWT-based authentication
-- Protected interview reports
+- Generate a tailored resume based on the target job
+- AI-assisted resume content generation
+- Convert generated HTML into PDF
+- Download the generated resume directly from the platform
 
-### Interview History
+### 📊 Interview History
+
 - Save generated interview reports
 - View previous reports
 - Access reports associated with the logged-in user
 
 ---
 
-## Tech Stack
+# 🖥️ Screenshots
 
-### Frontend
+## 🔐 Login
 
-- React
-- Vite
-- React Router
-- Axios
-- CSS
-- JavaScript
-
-### Backend
-
-- Node.js
-- Express.js
-- MongoDB
-- Mongoose
-- JWT
-- bcrypt
-- Multer
-- pdf-parse
-- Puppeteer
-
-### AI
-
-- Google Gemini API
+<p align="center">
+  <img src="./screenshots/login.png" width="850" alt="PrepAI Login">
+</p>
 
 ---
 
-## Application Architecture
+## 📝 Interview Strategy Generator
+
+<p align="center">
+  <img src="./screenshots/home.png" width="850" alt="PrepAI Interview Strategy Generator">
+</p>
+
+---
+
+## 📊 AI Interview Report
+
+<p align="center">
+  <img src="./screenshots/interview-report.png" width="850" alt="PrepAI Interview Report">
+</p>
+
+---
+
+## 🗺️ Preparation Roadmap
+
+<p align="center">
+  <img src="./screenshots/preparation-roadmap.png" width="850" alt="PrepAI Preparation Roadmap">
+</p>
+
+---
+
+# 🏗️ Application Architecture
 
 ```text
-                    PrepAI
-                      │
-          ┌───────────┴───────────┐
-          │                       │
-      Frontend                 Backend
-      React/Vite            Node.js/Express
-          │                       │
-          │                 ┌─────┴─────┐
-          │                 │           │
-          │             MongoDB      Gemini AI
-          │
-          └────────── HTTP API ─────────┘
+                    ┌──────────────────────┐
+                    │      PrepAI User     │
+                    └──────────┬───────────┘
+                               │
+                               ▼
+                    ┌──────────────────────┐
+                    │   React Frontend     │
+                    │       Vercel         │
+                    └──────────┬───────────┘
+                               │
+                            REST API
+                               │
+                               ▼
+                    ┌──────────────────────┐
+                    │  Node.js + Express   │
+                    │       Render         │
+                    └───────┬───────┬──────┘
+                            │       │
+                 ┌──────────┘       └──────────┐
+                 ▼                             ▼
+       ┌──────────────────┐          ┌──────────────────┐
+       │   MongoDB Atlas  │          │   Gemini API     │
+       │   Data Storage   │          │  AI Generation   │
+       └──────────────────┘          └──────────────────┘
+                            │
+                            ▼
+                   ┌──────────────────┐
+                   │    Puppeteer     │
+                   │   PDF Generator  │
+                   └──────────────────┘
